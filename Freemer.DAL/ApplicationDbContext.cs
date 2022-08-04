@@ -17,5 +17,7 @@ namespace Freemer.DAL
         }
 
         public DbSet<WorkOrder> WorkOrder { get; set; }
+        public DbSet<ActivityCategory> ActivityCategorie { get; set; }
+
     }
 }
