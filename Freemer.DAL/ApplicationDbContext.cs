@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Freemer.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,7 @@ namespace Freemer.DAL
         {
             Database.EnsureCreated();
         }
+
+        public DbSet<WorkOrder> WorkOrder { get; set; }
     }
 }
