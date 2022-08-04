@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Freemer.DAL.Interfaces
 {
-    interface IActivityCategoryRepository : IBaseRepository<ActivityCategory>
+    public interface IActivityCategoryRepository : IBaseRepository<ActivityCategory>
     {
         ActivityCategory GetByName(string name);
         IEnumerable<ActivityCategory> GetByParentId(int parentId);

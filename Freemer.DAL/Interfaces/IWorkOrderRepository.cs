@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Freemer.DAL.Interfaces
 {
-    interface IWorkOrderRepository : IBaseRepository<WorkOrder>
+    public interface IWorkOrderRepository : IBaseRepository<WorkOrder>
     {
         WorkOrder GetByTitle(string title);
         IEnumerable<WorkOrder> GetByActivityCategoryId(int activityCategoryId);
