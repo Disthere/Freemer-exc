@@ -1,4 +1,7 @@
-﻿using Freemer.Models;
+﻿using Freemer.DAL;
+using Freemer.Domain.Entities;
+using Freemer.Domain.Enums;
+using Freemer.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -13,13 +16,48 @@ namespace Freemer.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly ApplicationDbContext _dbContext;
+
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext dbContext)
         {
             _logger = logger;
+            _dbContext = dbContext;
         }
 
         public IActionResult Index()
         {
+            //{
+            //    ActivityCategory a1 = new() { Name = "C#" };
+            //    ActivityCategory a2 = new() { Name = "F#" };
+            //    ActivityCategory a3 = new() { Name = "C# - EF Core", ParentId = 1};
+
+            //    WorkOrder o1 = new()
+            //    {
+            //        Description = "ВПФ приложение",
+            //        Title = "app",
+            //        FinalPrice = 1200,
+            //        Relevance = OrderRelevance.Published,
+            //        ActivityCategoryId = 1
+            //    };
+
+            //    WorkOrder o2 = new()
+            //    {
+            //        Description = "Ф приложение",
+            //        Title = "app F",
+            //        FinalPrice = 5200,
+            //        Relevance = OrderRelevance.WorkerIsSelected,
+            //        ActivityCategoryId = 2
+            //    };
+
+            //    using (_dbContext)
+            //    {
+            //        _dbContext.ActivityCategory.AddRange(new List<ActivityCategory> { a1, a2, a3 });
+            //        _dbContext.WorkOrder.AddRange(new List<WorkOrder> { o1, o2 });
+
+            //        _dbContext.SaveChanges();
+            //    }
+            //}
+            
             return View();
         }
 

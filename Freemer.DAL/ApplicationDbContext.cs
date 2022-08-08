@@ -16,8 +16,13 @@ namespace Freemer.DAL
             Database.EnsureCreated();
         }
 
+        public ApplicationDbContext()
+        {
+            Database.EnsureCreated();
+        }
+
         public DbSet<WorkOrder> WorkOrder { get; set; }
-        public DbSet<ActivityCategory> ActivityCategorie { get; set; }
+        public DbSet<ActivityCategory> ActivityCategory { get; set; }
 
     }
 }

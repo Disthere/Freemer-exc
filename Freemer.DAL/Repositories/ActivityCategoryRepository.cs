@@ -1,5 +1,6 @@
 ﻿using Freemer.DAL.Interfaces;
 using Freemer.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,11 @@ namespace Freemer.DAL.Repositories
 {
     public class ActivityCategoryRepository : IActivityCategoryRepository
     {
+        private readonly ApplicationDbContext _dbContext;
+        public ActivityCategoryRepository(ApplicationDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
         public bool Create(ActivityCategory entity)
         {
             throw new NotImplementedException();
@@ -35,9 +41,9 @@ namespace Freemer.DAL.Repositories
             throw new NotImplementedException();
         }
 
-        public IEnumerable<ActivityCategory> Select()
+        public Task<List<ActivityCategory>> Select()
         {
-            throw new NotImplementedException();
+            return _dbContext.ActivityCategory.ToListAsync();
         }
     }
 }

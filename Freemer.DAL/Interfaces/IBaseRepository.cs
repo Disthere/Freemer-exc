@@ -11,8 +11,8 @@ namespace Freemer.DAL.Interfaces
         bool Create(T entity);
         
         T Get(int id);
-        
-        IEnumerable<T> Select();
+
+        Task<List<T>> Select();
 
         bool Delete(T entity);
 
