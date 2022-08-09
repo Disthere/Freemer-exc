@@ -26,9 +26,9 @@ namespace Freemer.DAL.Repositories
             throw new NotImplementedException();
         }
 
-        public WorkOrder Get(int id)
+        public async Task<WorkOrder> Get(int id)
         {
-            throw new NotImplementedException();
+            return await _dbContext.WorkOrder.FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public IEnumerable<WorkOrder> GetByActivityCategoryId(int activityCategoryId)
@@ -47,9 +47,9 @@ namespace Freemer.DAL.Repositories
         }
 
         // Async - для безостановочной работы сайта при обращении к базе данных
-        public Task<List<WorkOrder>> Select()
+        public async Task<List<WorkOrder>> Select()
         {
-            return _dbContext.WorkOrder.ToListAsync();
+            return await _dbContext.WorkOrder.ToListAsync();
         }
     }
 }

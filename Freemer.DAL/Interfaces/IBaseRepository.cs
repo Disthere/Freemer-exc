@@ -10,7 +10,7 @@ namespace Freemer.DAL.Interfaces
     {
         bool Create(T entity);
         
-        T Get(int id);
+        Task<T> Get(int id);
 
         Task<List<T>> Select();
 

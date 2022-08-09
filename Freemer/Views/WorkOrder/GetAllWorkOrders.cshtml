@@ -1,0 +1,15 @@
+﻿@model List<Freemer.Domain.Entities.WorkOrder>
+
+@{
+    ViewData["Title"] = "GetAllWorkOrders";
+}
+
+<h1>GetAllWorkOrders</h1>
+
+@foreach (var item in Model)
+{
+    <p>@item.Title</p>
+    <p>@item.Description</p>
+    <p>@item.CreationDate</p>
+}
+

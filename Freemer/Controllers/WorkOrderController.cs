@@ -16,9 +16,11 @@ namespace Freemer.Controllers
             _workOrderRepository = workOrderRepository;
 
         }
-        public IActionResult Index()
+        [HttpGet]
+        public IActionResult GetAllWorkOrders()
         {
-            return View();
+            var response = _workOrderRepository.Select();
+            return View(response);
         }
     }
 }

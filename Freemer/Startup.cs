@@ -1,4 +1,6 @@
 using Freemer.DAL;
+using Freemer.DAL.Interfaces;
+using Freemer.DAL.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,6 +32,9 @@ namespace Freemer
             var connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connection));
+
+            services.AddScoped<IWorkOrderRepository, WorkOrderRepository>();
+            services.AddScoped<IActivityCategoryRepository, ActivityCategoryRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

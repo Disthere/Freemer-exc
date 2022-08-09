@@ -26,7 +26,7 @@ namespace Freemer.DAL.Repositories
             throw new NotImplementedException();
         }
 
-        public ActivityCategory Get(int id)
+        public ActivityCategory GetAsync(int id)
         {
             throw new NotImplementedException();
         }
