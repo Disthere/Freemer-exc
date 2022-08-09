@@ -11,20 +11,29 @@ namespace Freemer.DAL.Repositories
 {
     public class ActivityCategoryRepository : IActivityCategoryRepository
     {
+        
         private readonly ApplicationDbContext _dbContext;
+
         public ActivityCategoryRepository(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public Task<bool> Create(ActivityCategory entity)
+
+        public async Task<bool> Create(ActivityCategory entity)
         {
-            throw new NotImplementedException();
+            await _dbContext.ActivityCategory.AddAsync(entity);
+            await _dbContext.SaveChangesAsync();
+
+            return true;
         }
 
-        public Task<bool> Delete(ActivityCategory entity)
+        public async Task<bool> Delete(ActivityCategory entity)
         {
-            throw new NotImplementedException();
+            _dbContext.ActivityCategory.Remove(entity);
+            await _dbContext.SaveChangesAsync();
+
+            return true;
         }
 
         public async Task<ActivityCategory> Get(int id)
@@ -32,19 +41,19 @@ namespace Freemer.DAL.Repositories
             return await _dbContext.ActivityCategory.FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public Task<ActivityCategory> GetByName(string name)
+        public async Task<ActivityCategory> GetByName(string name)
         {
-            throw new NotImplementedException();
+            return await _dbContext.ActivityCategory.FirstOrDefaultAsync(x => x.Name == name);
         }
 
-        public Task<IEnumerable<ActivityCategory>> GetByParentId(int parentId)
+        public async Task<IEnumerable<ActivityCategory>> GetByParentId(int parentId)
         {
-            throw new NotImplementedException();
+            return await _dbContext.ActivityCategory.Where(x => x.ParentId == parentId).ToListAsync();
         }
 
-        public Task<List<ActivityCategory>> Select()
+        public async Task<List<ActivityCategory>> Select()
         {
-            throw new NotImplementedException();
+            return await _dbContext.ActivityCategory.ToListAsync();
         }
     }
 }
