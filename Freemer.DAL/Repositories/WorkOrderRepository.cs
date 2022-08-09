@@ -12,18 +12,26 @@ namespace Freemer.DAL.Repositories
     public class WorkOrderRepository : IWorkOrderRepository
     {
         private readonly ApplicationDbContext _dbContext;
+
         public WorkOrderRepository(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
         }
-        public bool Create(WorkOrder entity)
+
+        public async Task<bool> Create(WorkOrder entity)
         {
-            throw new NotImplementedException();
+            await _dbContext.WorkOrder.AddAsync(entity);
+            await _dbContext.SaveChangesAsync();
+
+            return true;
         }
 
-        public bool Delete(WorkOrder entity)
+        public async Task<bool> Delete(WorkOrder entity)
         {
-            throw new NotImplementedException();
+            _dbContext.WorkOrder.Remove(entity);
+            await _dbContext.SaveChangesAsync();
+
+            return true;
         }
 
         public async Task<WorkOrder> Get(int id)
@@ -31,19 +39,19 @@ namespace Freemer.DAL.Repositories
             return await _dbContext.WorkOrder.FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public IEnumerable<WorkOrder> GetByActivityCategoryId(int activityCategoryId)
+        public async Task<IEnumerable<WorkOrder>> GetByActivityCategoryId(int activityCategoryId)
         {
-            throw new NotImplementedException();
+            return await _dbContext.WorkOrder.Where(x => x.ActivityCategoryId == activityCategoryId).ToListAsync();
         }
 
-        public IEnumerable<WorkOrder> GetByEmployerId(int employerId)
+        public async Task<IEnumerable<WorkOrder>> GetByEmployerId(int employerId)
         {
-            throw new NotImplementedException();
+            return await _dbContext.WorkOrder.Where(x => x.EmployerId == employerId).ToListAsync();
         }
 
-        public WorkOrder GetByTitle(string title)
+        public async Task<WorkOrder> GetByTitle(string title)
         {
-            throw new NotImplementedException();
+            return await _dbContext.WorkOrder.FirstOrDefaultAsync(x => x.Title == title);
         }
 
         // Async - для безостановочной работы сайта при обращении к базе данных

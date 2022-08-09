@@ -9,8 +9,8 @@ namespace Freemer.DAL.Interfaces
 {
     public interface IWorkOrderRepository : IBaseRepository<WorkOrder>
     {
-        WorkOrder GetByTitle(string title);
-        IEnumerable<WorkOrder> GetByActivityCategoryId(int activityCategoryId);
-        IEnumerable<WorkOrder> GetByEmployerId(int employerId);
+        Task<WorkOrder> GetByTitle(string title);
+        Task<IEnumerable<WorkOrder>> GetByActivityCategoryId(int activityCategoryId);
+        Task<IEnumerable<WorkOrder>> GetByEmployerId(int employerId);
     }
 }

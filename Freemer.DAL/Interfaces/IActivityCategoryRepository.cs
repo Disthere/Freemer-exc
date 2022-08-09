@@ -9,7 +9,7 @@ namespace Freemer.DAL.Interfaces
 {
     public interface IActivityCategoryRepository : IBaseRepository<ActivityCategory>
     {
-        ActivityCategory GetByName(string name);
-        IEnumerable<ActivityCategory> GetByParentId(int parentId);
+        Task<ActivityCategory> GetByName(string name);
+        Task<IEnumerable<ActivityCategory>> GetByParentId(int parentId);
     }
 }

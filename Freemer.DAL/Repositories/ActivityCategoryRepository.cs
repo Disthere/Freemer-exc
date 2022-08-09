@@ -16,34 +16,35 @@ namespace Freemer.DAL.Repositories
         {
             _dbContext = dbContext;
         }
-        public bool Create(ActivityCategory entity)
+
+        public Task<bool> Create(ActivityCategory entity)
         {
             throw new NotImplementedException();
         }
 
-        public bool Delete(ActivityCategory entity)
+        public Task<bool> Delete(ActivityCategory entity)
         {
             throw new NotImplementedException();
         }
 
-        public ActivityCategory GetAsync(int id)
+        public async Task<ActivityCategory> Get(int id)
+        {
+            return await _dbContext.ActivityCategory.FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+        public Task<ActivityCategory> GetByName(string name)
         {
             throw new NotImplementedException();
         }
 
-        public ActivityCategory GetByName(string name)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<ActivityCategory> GetByParentId(int parentId)
+        public Task<IEnumerable<ActivityCategory>> GetByParentId(int parentId)
         {
             throw new NotImplementedException();
         }
 
         public Task<List<ActivityCategory>> Select()
         {
-            return _dbContext.ActivityCategory.ToListAsync();
+            throw new NotImplementedException();
         }
     }
 }

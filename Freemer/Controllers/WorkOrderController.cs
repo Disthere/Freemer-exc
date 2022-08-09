@@ -17,9 +17,9 @@ namespace Freemer.Controllers
 
         }
         [HttpGet]
-        public IActionResult GetAllWorkOrders()
+        public async Task<IActionResult> GetAllWorkOrders()
         {
-            var response = _workOrderRepository.Select();
+            var response = await _workOrderRepository.Select();
             return View(response);
         }
     }
