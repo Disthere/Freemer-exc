@@ -3,15 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32510.428
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Freemer", "Freemer\Freemer.csproj", "{C94B5250-8BC0-44CA-9471-B3ACDA4E9DA2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Freemer", "Freemer\Freemer.csproj", "{C94B5250-8BC0-44CA-9471-B3ACDA4E9DA2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{0E20FBE7-138B-4C1D-B0C9-9A5C60CF9F34}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DAL", "DAL", "{C036E353-A5BB-4051-B551-B8A6C86633E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Freemer.DAL", "Freemer.DAL\Freemer.DAL.csproj", "{FE9449F8-D807-43B3-9CC4-12B2757ED638}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Freemer.DAL", "Freemer.DAL\Freemer.DAL.csproj", "{FE9449F8-D807-43B3-9CC4-12B2757ED638}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Freemer.Domain", "Freemer.Domain\Freemer.Domain.csproj", "{6EC00E5C-2F1B-44EF-94A5-DFCD673CC1DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Freemer.Domain", "Freemer.Domain\Freemer.Domain.csproj", "{6EC00E5C-2F1B-44EF-94A5-DFCD673CC1DF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{ACAA4A94-9BAC-4537-99E4-B533059C95AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{07DBA04D-93A5-436C-BF4F-8BBC0E78BDC2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +35,10 @@ Global
 		{6EC00E5C-2F1B-44EF-94A5-DFCD673CC1DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6EC00E5C-2F1B-44EF-94A5-DFCD673CC1DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6EC00E5C-2F1B-44EF-94A5-DFCD673CC1DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07DBA04D-93A5-436C-BF4F-8BBC0E78BDC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07DBA04D-93A5-436C-BF4F-8BBC0E78BDC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07DBA04D-93A5-436C-BF4F-8BBC0E78BDC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07DBA04D-93A5-436C-BF4F-8BBC0E78BDC2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -38,6 +46,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{FE9449F8-D807-43B3-9CC4-12B2757ED638} = {C036E353-A5BB-4051-B551-B8A6C86633E3}
 		{6EC00E5C-2F1B-44EF-94A5-DFCD673CC1DF} = {0E20FBE7-138B-4C1D-B0C9-9A5C60CF9F34}
+		{07DBA04D-93A5-436C-BF4F-8BBC0E78BDC2} = {ACAA4A94-9BAC-4537-99E4-B533059C95AE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F506B530-D10F-471B-BC81-1E3CD582C798}
