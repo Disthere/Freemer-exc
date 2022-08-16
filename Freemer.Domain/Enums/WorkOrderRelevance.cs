@@ -7,7 +7,10 @@ using System.Threading.Tasks;
 
 namespace Freemer.Domain.Enums
 {
-    public enum OrderRelevance
+    /// <summary>
+    /// Статусы публикации и выполнения
+    /// </summary>
+    public enum WorkOrderRelevance
     {
         [Display(Name = "Не опубликовано")]
         NotPublished = 0,

@@ -14,6 +14,8 @@ namespace Freemer.DAL.Interfaces
 
         Task<List<T>> Select();
 
+        Task<bool> Update(int id, T updatedEntity);
+
         Task<bool> Delete(T entity);
 
     }

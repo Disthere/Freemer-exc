@@ -7,7 +7,10 @@ using System.Threading.Tasks;
 
 namespace Freemer.Domain.Enums
 {
-    public enum ModerationStatus
+    /// <summary>
+    /// Статусы модерации перед публикацией
+    /// </summary>
+    public enum WorkOrderModerationStatus
     {
         [Display(Name = "Не проверено")]
         NotModerated = 0,

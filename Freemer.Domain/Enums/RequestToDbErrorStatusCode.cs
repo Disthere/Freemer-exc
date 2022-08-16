@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Freemer.Domain.Enums
 {
-    public enum StatusCode
+    public enum RequestToDbErrorStatusCode
     {
         WorkOrderNotFound = 0,
         CategoryNotFound = 2,

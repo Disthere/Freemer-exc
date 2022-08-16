@@ -34,7 +34,7 @@ namespace Freemer.Controllers
                 Description = "Простой сайт",
                 Title = "веб",
                 FinalPrice = 1000,
-                Relevance = OrderRelevance.Published,
+                Relevance = WorkOrderRelevance.Published,
                 ActivityCategoryId = 2
             };
 
@@ -46,7 +46,7 @@ namespace Freemer.Controllers
 
             //var response3 = await _workOrderRepository.GetByTitle("веб");
 
-            if (response.StatusCode == Domain.Enums.StatusCode.Ok)
+            if (response.StatusCode == Domain.Enums.RequestToDbErrorStatusCode.Ok)
             {
                 return View(response.Data);
             }

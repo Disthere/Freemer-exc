@@ -24,11 +24,11 @@ namespace Freemer.Domain.Entities
         public int WorkerId { get; set; }
         public string OtherInfo { get; set; }
 
-        [DefaultValue(ModerationStatus.NotModerated)] //(отдельная таблица с причинами отказа в публикации)
-        public ModerationStatus ModerationStatus { get; set; }
+        [DefaultValue(WorkOrderModerationStatus.NotModerated)] //(отдельная таблица с причинами отказа в публикации)
+        public WorkOrderModerationStatus ModerationStatus { get; set; }
 
-        [DefaultValue(OrderRelevance.NotPublished)]
-        public OrderRelevance Relevance { get; set; }
+        [DefaultValue(WorkOrderRelevance.NotPublished)]
+        public WorkOrderRelevance Relevance { get; set; }
 
     }
 }

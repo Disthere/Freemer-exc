@@ -14,8 +14,10 @@ namespace Freemer.DAL.Interfaces
         Task<IEnumerable<WorkOrder>> GetByEmployerId(int employerId);
         Task<IEnumerable<WorkOrder>> GetByWorkerId(int workerId);
         Task<IEnumerable<WorkOrder>> GetByLocationId(int locationId);
-        Task<IEnumerable<WorkOrder>> GetByWorkerId(int workerId);
+        Task<IEnumerable<WorkOrder>> GetByModerationStatus(int moderationStatus);
+        Task<IEnumerable<WorkOrder>> GetByRelevance(int relevance);
+        Task<IEnumerable<WorkOrder>> GetBySomeProperty(string someProperty);
 
-       
+
     }
 }

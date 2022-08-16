@@ -1,9 +1,11 @@
 ﻿using Freemer.DAL.Interfaces;
 using Freemer.Domain.Entities;
+using Freemer.Domain.Enums;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,15 +27,7 @@ namespace Freemer.DAL.Repositories
 
             return true;
         }
-
-        public async Task<bool> Delete(WorkOrder entity)
-        {
-            _dbContext.WorkOrder.Remove(entity);
-            await _dbContext.SaveChangesAsync();
-
-            return true;
-        }
-
+          
         public async Task<WorkOrder> GetById(int id)
         {
             return await _dbContext.WorkOrder.FirstOrDefaultAsync(x => x.Id == id);
@@ -58,6 +52,82 @@ namespace Freemer.DAL.Repositories
         public async Task<List<WorkOrder>> Select()
         {
             return await _dbContext.WorkOrder.ToListAsync();
+        }
+
+        public async Task<IEnumerable<WorkOrder>> GetByWorkerId(int workerId)
+        {
+            return await _dbContext.WorkOrder.Where(x => x.WorkerId == workerId).ToListAsync();
+        }
+
+        public async Task<IEnumerable<WorkOrder>> GetByLocationId(int locationId)
+        {
+            return await _dbContext.WorkOrder.Where(x => x.LocationId == locationId).ToListAsync();
+        }
+
+        public async Task<IEnumerable<WorkOrder>> GetByModerationStatus(int moderationStatus)
+        {
+            return await _dbContext.WorkOrder.Where(x => x.ModerationStatus == (WorkOrderModerationStatus)moderationStatus).ToListAsync();
+        }
+
+        public async Task<IEnumerable<WorkOrder>> GetByRelevance(int relevance)
+        {
+            return await _dbContext.WorkOrder.Where(x => x.Relevance == (WorkOrderRelevance)relevance).ToListAsync();
+        }
+
+        public async Task<IEnumerable<WorkOrder>> GetBySomeProperty(string someProperty)
+        {
+            throw new NotImplementedException();
+            //PropertyInfo[] myPropertyInfo;
+            //Type myType = typeof(WorkOrder);
+            //myPropertyInfo = myType.GetProperties();
+            //List<string> workOrderProperty = new List<string>();
+            //foreach (var item in myPropertyInfo)
+            //{
+            //   workOrderProperty.Add(item.ToString());
+            //}
+            //if (workOrderProperty.Contains(someProperty))
+            //{
+
+            //}
+            //return await _dbContext.WorkOrder.Where(p =>
+            //{
+            //    PropertyInfo propertyInfo = typeof(WorkOrder).GetProperty(someProperty);
+
+            //}).ToListAsync();
+            ////Include(x=>x. Select(x => x.workOrderProperty[0]).ToListAsync();
+            ////Where(x => x. == activityCategoryId).ToListAsync();
+        }
+
+        public async Task<bool> Update(int id, WorkOrder updatedEntity)
+        {
+            try
+            {
+                var workOrder = updatedEntity;
+                workOrder.Id = id;
+               _dbContext.WorkOrder.Update(workOrder);
+                await _dbContext.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        
+        public async Task<bool> Delete(WorkOrder entity)
+        {
+            try
+            {
+                _dbContext.WorkOrder.Remove(entity);
+                await _dbContext.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }
