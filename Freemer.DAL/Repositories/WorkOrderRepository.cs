@@ -34,7 +34,7 @@ namespace Freemer.DAL.Repositories
             return true;
         }
 
-        public async Task<WorkOrder> Get(int id)
+        public async Task<WorkOrder> GetById(int id)
         {
             return await _dbContext.WorkOrder.FirstOrDefaultAsync(x => x.Id == id);
         }

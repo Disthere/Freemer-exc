@@ -36,7 +36,7 @@ namespace Freemer.DAL.Repositories
             return true;
         }
 
-        public async Task<ActivityCategory> Get(int id)
+        public async Task<ActivityCategory> GetById(int id)
         {
             return await _dbContext.ActivityCategory.FirstOrDefaultAsync(x => x.Id == id);
         }

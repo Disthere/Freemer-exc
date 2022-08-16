@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Freemer.DAL\Freemer.DAL.csproj" />
+    <ProjectReference Include="..\Service\Service.csproj" />
   </ItemGroup>
 
 </Project>

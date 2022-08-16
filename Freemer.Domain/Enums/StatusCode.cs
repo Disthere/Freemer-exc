@@ -8,6 +8,8 @@ namespace Freemer.Domain.Enums
 {
     public enum StatusCode
     {
+        WorkOrderNotFound = 0,
+        CategoryNotFound = 2,
         Ok = 200,
         InternalServerError = 500
     }

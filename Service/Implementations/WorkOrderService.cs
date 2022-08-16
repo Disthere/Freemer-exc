@@ -11,12 +11,34 @@ using System.Threading.Tasks;
 
 namespace Service.Implementations
 {
-    class WorkOrderService : IWorkOrderService
+    public class WorkOrderService : IWorkOrderService
     {
         private readonly IWorkOrderRepository _workOrderRepository;
 
         public WorkOrderService(IWorkOrderRepository workOrderRepository) => (_workOrderRepository) = (workOrderRepository);
-        
+
+        #region Создать новый заказ
+        public Task<IBaseResponse<bool>> Create(WorkOrder entity)
+        {
+
+        }
+        #endregion
+
+        #region Удалить заказ из базы
+        public Task<IBaseResponse<bool>> Delete(WorkOrder entity)
+        {
+
+        }
+        #endregion
+
+        #region Получить заказ из базы по номеру
+        public Task<IBaseResponse<WorkOrder>> GetById(int id)
+        {
+
+        }
+        #endregion
+
+        #region Получить коллекцию всех заказов
         public async Task<IBaseResponse<IEnumerable<WorkOrder>>> GetAllWorkOrders()
         {
             var baseResponse = new BaseResponse<IEnumerable<WorkOrder>>();
@@ -27,11 +49,12 @@ namespace Service.Implementations
                 if (workOrders.Count == 0)
                 {
                     baseResponse.Description = "Найдено 0 элементов";
-                    baseResponse.StatusCode = StatusCode.Ok;
+                    baseResponse.StatusCode = StatusCode.InternalServerError;
                     return baseResponse;
                 }
 
                 baseResponse.Data = workOrders;
+                baseResponse.StatusCode = StatusCode.Ok;
 
                 return baseResponse;
             }
@@ -43,5 +66,28 @@ namespace Service.Implementations
                 };
             }
         }
+        #endregion
+
+        #region Получить коллекцию заказов из базы по отдельной категории
+        public Task<IBaseResponse<IEnumerable<WorkOrder>>> GetByActivityCategoryId(int activityCategoryId)
+        {
+
+        }
+        #endregion
+
+        #region Получить коллекцию заказов из базы по отдельному заказчику
+        public Task<IBaseResponse<IEnumerable<WorkOrder>>> GetByEmployerId(int employerId)
+        {
+
+        }
+        #endregion
+
+        #region Получить заказ из базы по названию
+        public Task<IBaseResponse<WorkOrder>> GetByTitle(string title)
+        {
+
+        }
+        #endregion
+
     }
 }
