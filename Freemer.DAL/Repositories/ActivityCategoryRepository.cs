@@ -55,5 +55,10 @@ namespace Freemer.DAL.Repositories
         {
             return await _dbContext.ActivityCategory.ToListAsync();
         }
+
+        public Task<bool> Update(int id, ActivityCategory updatedEntity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

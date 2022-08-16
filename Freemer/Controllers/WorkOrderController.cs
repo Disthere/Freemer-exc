@@ -1,6 +1,7 @@
 ﻿using Freemer.DAL.Interfaces;
 using Freemer.Domain.Entities;
 using Freemer.Domain.Enums;
+using Freemer.Domain.ViewModels.WorkOrder;
 using Microsoft.AspNetCore.Mvc;
 using Service.Interfaces;
 using System;
@@ -25,26 +26,33 @@ namespace Freemer.Controllers
 
         //}
         [HttpGet]
-        public async Task<IActionResult> GetAllWorkOrders()
+        public async Task<IActionResult> Get()
         {
-            var response = await _workOrderService.GetAllWorkOrders();
+
+
 
             WorkOrder o1 = new()
             {
-                Description = "Простой сайт",
+                Description = "Большой сайт",
                 Title = "веб",
                 FinalPrice = 1000,
-                Relevance = WorkOrderRelevance.Published,
+                Relevance = WorkOrderRelevance.RemovedByEmployer,
                 ActivityCategoryId = 2
             };
 
-            //await _workOrderRepository.Create(o1);
+            await _workOrderService.Update(7, o1);
 
-            //var response1 = await _workOrderRepository.Get(2);
+            //await _workOrderService.Delete(4);
 
-            //var response2 = await _workOrderRepository.GetByActivityCategoryId(1);
+            var response = await _workOrderService.GetAllWorkOrders();
 
-            //var response3 = await _workOrderRepository.GetByTitle("веб");
+            var response1 = await _workOrderService.GetById(2);
+
+            var response2 = await _workOrderService.GetByActivityCategoryId(2);
+
+            var response3 = await _workOrderService.GetByTitle("веб");
+
+            var response4 = await _workOrderService.GetByRelevance(2);
 
             if (response.StatusCode == Domain.Enums.RequestToDbErrorStatusCode.Ok)
             {

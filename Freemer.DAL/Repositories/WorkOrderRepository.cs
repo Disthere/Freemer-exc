@@ -102,9 +102,26 @@ namespace Freemer.DAL.Repositories
         {
             try
             {
-                var workOrder = updatedEntity;
-                workOrder.Id = id;
-               _dbContext.WorkOrder.Update(workOrder);
+                var workOrder = await GetById(id);
+
+                {
+                    workOrder.Title = updatedEntity.Title;
+                    workOrder.Description = updatedEntity.Description;
+                    workOrder.CreationDate = updatedEntity.CreationDate;
+                    workOrder.EmployerId = updatedEntity.EmployerId;
+                    workOrder.ActivityCategoryId = updatedEntity.ActivityCategoryId;
+                    workOrder.LocationId = updatedEntity.LocationId;
+                    workOrder.OrderType = updatedEntity.OrderType;
+                    workOrder.TimeOver = updatedEntity.TimeOver;
+                    workOrder.StartPrice = updatedEntity.StartPrice;
+                    workOrder.FinalPrice = updatedEntity.FinalPrice;
+                    workOrder.WorkerId = updatedEntity.WorkerId;
+                    workOrder.OtherInfo = updatedEntity.OtherInfo;
+                    workOrder.ModerationStatus = updatedEntity.ModerationStatus;
+                    workOrder.Relevance = updatedEntity.Relevance;
+                }
+
+                _dbContext.WorkOrder.Update(workOrder);
                 await _dbContext.SaveChangesAsync();
                 return true;
             }
