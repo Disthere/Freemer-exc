@@ -11,13 +11,13 @@ using System.Threading.Tasks;
 
 namespace Freemer.Controllers
 {
-    public class WorkOrderController : Controller
+    public class OrderController : Controller
     {
         //private readonly IWorkOrderRepository _workOrderRepository;
 
         private readonly IWorkOrderService _workOrderService;
 
-        public WorkOrderController(IWorkOrderService workOrderService) => (_workOrderService) = (workOrderService);
+        public OrderController(IWorkOrderService workOrderService) => (_workOrderService) = (workOrderService);
 
 
         //public WorkOrderController(IWorkOrderRepository workOrderRepository)
@@ -28,8 +28,6 @@ namespace Freemer.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-
-
 
             WorkOrder o1 = new()
             {
@@ -60,5 +58,13 @@ namespace Freemer.Controllers
             }
             return RedirectToAction("Error");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Add()
+        {
+            return View();
+        }
+
+
     }
 }
