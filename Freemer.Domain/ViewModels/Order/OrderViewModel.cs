@@ -6,15 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Freemer.Domain.ViewModels.WorkOrder
+namespace Freemer.Domain.ViewModels.Order
 {
-    public class WorkOrderViewModel
+    public class OrderViewModel
     {
         public string Title { get; set; }
         public string Description { get; set; }
         public DateTime CreationDate { get; set; } = DateTime.Now;
         public int EmployerId { get; set; }
-        public int ActivityCategoryId { get; set; }
+        public int JobCategoryId { get; set; }
         public int LocationId { get; set; }
         public string OrderType { get; set; }
         public TimeSpan TimeOver { get; set; }

@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace Freemer.Controllers
 {
-    public class ActivityCategoryController : Controller
+    public class JobCategoryController : Controller
     {
-        private readonly IActivityCategoryRepository _activityCategoryRepository;
+        private readonly IJobCategoryRepository _jobCategoryRepository;
 
-        public ActivityCategoryController(IActivityCategoryRepository activityCategoryRepository)
+        public JobCategoryController(IJobCategoryRepository jobCategoryRepository)
         {
-            _activityCategoryRepository = activityCategoryRepository;
+            _jobCategoryRepository = jobCategoryRepository;
         }
 
         public IActionResult Index()

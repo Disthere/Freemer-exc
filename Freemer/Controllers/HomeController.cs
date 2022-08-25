@@ -26,38 +26,38 @@ namespace Freemer.Controllers
 
         public IActionResult Index()
         {
-            //{
-            //    ActivityCategory a1 = new() { Name = "C#" };
-            //    ActivityCategory a2 = new() { Name = "F#" };
-            //    ActivityCategory a3 = new() { Name = "C# - EF Core", ParentId = 1};
+            {
+                JobCategory a1 = new() { Name = "C#" };
+                JobCategory a2 = new() { Name = "F#" };
+                JobCategory a3 = new() { Name = "C# - EF Core", ParentId = 1 };
 
-            //    WorkOrder o1 = new()
-            //    {
-            //        Description = "ВПФ приложение",
-            //        Title = "app",
-            //        FinalPrice = 1200,
-            //        Relevance = OrderRelevance.Published,
-            //        ActivityCategoryId = 1
-            //    };
+                Order o1 = new()
+                {
+                    Description = "ВПФ приложение",
+                    Title = "app",
+                    FinalPrice = 1200,
+                    Relevance = OrderRelevance.Published,
+                    JobCategoryId = 1
+                };
 
-            //    WorkOrder o2 = new()
-            //    {
-            //        Description = "Ф приложение",
-            //        Title = "app F",
-            //        FinalPrice = 5200,
-            //        Relevance = OrderRelevance.WorkerIsSelected,
-            //        ActivityCategoryId = 2
-            //    };
+                Order o2 = new()
+                {
+                    Description = "Ф приложение",
+                    Title = "app F",
+                    FinalPrice = 5200,
+                    Relevance = OrderRelevance.WorkerIsSelected,
+                    JobCategoryId = 2
+                };
 
-            //    using (_dbContext)
-            //    {
-            //        _dbContext.ActivityCategory.AddRange(new List<ActivityCategory> { a1, a2, a3 });
-            //        _dbContext.WorkOrder.AddRange(new List<WorkOrder> { o1, o2 });
+                using (_dbContext)
+                {
+                    _dbContext.JobCategory.AddRange(new List<JobCategory> { a1, a2, a3 });
+                    _dbContext.Order.AddRange(new List<Order> { o1, o2 });
 
-            //        _dbContext.SaveChanges();
-            //    }
-            //}
-            
+                    _dbContext.SaveChanges();
+                }
+            }
+
             return View();
         }
 

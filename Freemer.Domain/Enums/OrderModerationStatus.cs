@@ -10,7 +10,7 @@ namespace Freemer.Domain.Enums
     /// <summary>
     /// Статусы модерации перед публикацией
     /// </summary>
-    public enum WorkOrderModerationStatus
+    public enum OrderModerationStatus
     {
         [Display(Name = "Не проверено")]
         NotModerated = 0,

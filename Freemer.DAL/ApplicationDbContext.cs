@@ -13,6 +13,7 @@ namespace Freemer.DAL
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
+            //Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 
@@ -21,8 +22,8 @@ namespace Freemer.DAL
             Database.EnsureCreated();
         }
 
-        public DbSet<WorkOrder> WorkOrder { get; set; }
-        public DbSet<ActivityCategory> ActivityCategory { get; set; }
+        public DbSet<Order> Order { get; set; }
+        public DbSet<JobCategory> JobCategory { get; set; }
 
     }
 }

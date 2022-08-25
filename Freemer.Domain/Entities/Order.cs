@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace Freemer.Domain.Entities
 {
-    public class WorkOrder
+    public class Order
     {
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public DateTime CreationDate { get; set; } = DateTime.Now;
         public int EmployerId { get; set; }
-        public int ActivityCategoryId { get; set; }
+        public int JobCategoryId { get; set; }
         public int LocationId { get; set; }
         public string OrderType { get; set; }
         public TimeSpan TimeOver { get; set; }
@@ -24,11 +24,11 @@ namespace Freemer.Domain.Entities
         public int WorkerId { get; set; }
         public string OtherInfo { get; set; }
 
-        [DefaultValue(WorkOrderModerationStatus.NotModerated)] //(отдельная таблица с причинами отказа в публикации)
-        public WorkOrderModerationStatus ModerationStatus { get; set; }
+        [DefaultValue(OrderModerationStatus.NotModerated)] //(отдельная таблица с причинами отказа в публикации)
+        public OrderModerationStatus ModerationStatus { get; set; }
 
-        [DefaultValue(WorkOrderRelevance.NotPublished)]
-        public WorkOrderRelevance Relevance { get; set; }
+        [DefaultValue(OrderRelevance.NotPublished)]
+        public OrderRelevance Relevance { get; set; }
 
     }
 }

@@ -2,7 +2,7 @@
 using Freemer.Domain.Entities;
 using Freemer.Domain.Enums;
 using Freemer.Domain.Response;
-using Freemer.Domain.ViewModels.WorkOrder;
+using Freemer.Domain.ViewModels.Order;
 using Service.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -12,43 +12,43 @@ using System.Threading.Tasks;
 
 namespace Service.Implementations
 {
-    public class WorkOrderService : IWorkOrderService
+    public class OrderService : IOrderService
     {
-        private readonly IWorkOrderRepository _workOrderRepository;
+        private readonly IOrderRepository _orderRepository;
 
-        public WorkOrderService(IWorkOrderRepository workOrderRepository) => (_workOrderRepository) = (workOrderRepository);
+        public OrderService(IOrderRepository orderRepository) => (_orderRepository) = (orderRepository);
 
         #region Создать новый заказ
-        public async Task<IBaseResponse<WorkOrderViewModel>> Create(WorkOrderViewModel workOrderViewModel)
+        public async Task<IBaseResponse<OrderViewModel>> Create(OrderViewModel orderViewModel)
         {
-            var baseResponse = new BaseResponse<WorkOrderViewModel>();
+            var baseResponse = new BaseResponse<OrderViewModel>();
 
             try
             {
-                WorkOrder workOrder = new()
+                Order order = new()
                 {
-                    Title = workOrderViewModel.Title,
-                    Description = workOrderViewModel.Description,
-                    CreationDate = workOrderViewModel.CreationDate,
-                    EmployerId = workOrderViewModel.EmployerId,
-                    ActivityCategoryId = workOrderViewModel.ActivityCategoryId,
-                    LocationId = workOrderViewModel.LocationId,
-                    OrderType = workOrderViewModel.OrderType,
-                    TimeOver = workOrderViewModel.TimeOver,
-                    StartPrice = workOrderViewModel.StartPrice,
-                    FinalPrice = workOrderViewModel.FinalPrice,
-                    WorkerId = workOrderViewModel.WorkerId,
-                    OtherInfo = workOrderViewModel.OtherInfo,
-                    ModerationStatus = (WorkOrderModerationStatus)Convert.ToInt32(workOrderViewModel.ModerationStatus),
-                    Relevance = (WorkOrderRelevance)Convert.ToInt32(workOrderViewModel.Relevance)
+                    Title = orderViewModel.Title,
+                    Description = orderViewModel.Description,
+                    CreationDate = orderViewModel.CreationDate,
+                    EmployerId = orderViewModel.EmployerId,
+                    JobCategoryId = orderViewModel.JobCategoryId,
+                    LocationId = orderViewModel.LocationId,
+                    OrderType = orderViewModel.OrderType,
+                    TimeOver = orderViewModel.TimeOver,
+                    StartPrice = orderViewModel.StartPrice,
+                    FinalPrice = orderViewModel.FinalPrice,
+                    WorkerId = orderViewModel.WorkerId,
+                    OtherInfo = orderViewModel.OtherInfo,
+                    ModerationStatus = (OrderModerationStatus)Convert.ToInt32(orderViewModel.ModerationStatus),
+                    Relevance = (OrderRelevance)Convert.ToInt32(orderViewModel.Relevance)
                 };
 
-                await _workOrderRepository.Create(workOrder);
+                await _orderRepository.Create(order);
 
             }
             catch (Exception ex)
             {
-                return new BaseResponse<WorkOrderViewModel>()
+                return new BaseResponse<OrderViewModel>()
                 {
                     Description = $"[Create] : {ex.Message}",
                     StatusCode = RequestToDbErrorStatusCode.InternalServerError
@@ -60,28 +60,28 @@ namespace Service.Implementations
 
 
         #region Получить заказ из базы по номеру
-        public async Task<IBaseResponse<WorkOrder>> GetById(int id)
+        public async Task<IBaseResponse<Order>> GetById(int id)
         {
-            var baseResponse = new BaseResponse<WorkOrder>();
+            var baseResponse = new BaseResponse<Order>();
 
             try
             {
-                var workOrder = await _workOrderRepository.GetById(id);
+                var order = await _orderRepository.GetById(id);
 
-                if (workOrder == null)
+                if (order == null)
                 {
-                    baseResponse.Description = "WorkOrder not found";
-                    baseResponse.StatusCode = RequestToDbErrorStatusCode.WorkOrderNotFound;
+                    baseResponse.Description = "Order not found";
+                    baseResponse.StatusCode = RequestToDbErrorStatusCode.OrderNotFound;
                     return baseResponse;
                 }
 
-                baseResponse.Data = workOrder;
+                baseResponse.Data = order;
 
                 return baseResponse;
             }
             catch (Exception ex)
             {
-                return new BaseResponse<WorkOrder>()
+                return new BaseResponse<Order>()
                 {
                     Description = $"[GetById] : {ex.Message}",
                     StatusCode = RequestToDbErrorStatusCode.InternalServerError,
@@ -91,30 +91,30 @@ namespace Service.Implementations
         #endregion
 
         #region Получить коллекцию всех заказов
-        public async Task<IBaseResponse<IEnumerable<WorkOrder>>> GetAllWorkOrders()
+        public async Task<IBaseResponse<IEnumerable<Order>>> GetAllOrders()
         {
-            var baseResponse = new BaseResponse<IEnumerable<WorkOrder>>();
+            var baseResponse = new BaseResponse<IEnumerable<Order>>();
 
             try
             {
-                var workOrders = await _workOrderRepository.Select();
-                if (workOrders.Count == 0)
+                var orders = await _orderRepository.Select();
+                if (orders.Count == 0)
                 {
                     baseResponse.Description = "Найдено 0 элементов";
-                    baseResponse.StatusCode = RequestToDbErrorStatusCode.WorkOrderNotFound;
+                    baseResponse.StatusCode = RequestToDbErrorStatusCode.OrderNotFound;
                     return baseResponse;
                 }
 
-                baseResponse.Data = workOrders;
+                baseResponse.Data = orders;
                 baseResponse.StatusCode = RequestToDbErrorStatusCode.Ok;
 
                 return baseResponse;
             }
             catch (Exception ex)
             {
-                return new BaseResponse<IEnumerable<WorkOrder>>()
+                return new BaseResponse<IEnumerable<Order>>()
                 {
-                    Description = $"[GetAllWorkOrders] : {ex.Message}",
+                    Description = $"[GetAllOrders] : {ex.Message}",
                     StatusCode = RequestToDbErrorStatusCode.InternalServerError
                 };
             }
@@ -123,31 +123,31 @@ namespace Service.Implementations
 
 
         #region Получить коллекцию заказов из базы по отдельной категории
-        public async Task<IBaseResponse<IEnumerable<WorkOrder>>> GetByActivityCategoryId(int activityCategoryId)
+        public async Task<IBaseResponse<IEnumerable<Order>>> GetByJobCategoryId(int jobCategoryId)
         {
-            var baseResponse = new BaseResponse<IEnumerable<WorkOrder>>();
+            var baseResponse = new BaseResponse<IEnumerable<Order>>();
 
             try
             {
-                var workOrders = await _workOrderRepository.GetByActivityCategoryId(activityCategoryId);
+                var orders = await _orderRepository.GetByJobCategoryId(jobCategoryId);
 
-                if (workOrders == null)
+                if (orders == null)
                 {
                     baseResponse.Description = "Найдено 0 элементов";
-                    baseResponse.StatusCode = RequestToDbErrorStatusCode.WorkOrderNotFound;
+                    baseResponse.StatusCode = RequestToDbErrorStatusCode.OrderNotFound;
                     return baseResponse;
                 }
 
-                baseResponse.Data = workOrders;
+                baseResponse.Data = orders;
                 baseResponse.StatusCode = RequestToDbErrorStatusCode.Ok;
 
                 return baseResponse;
             }
             catch (Exception ex)
             {
-                return new BaseResponse<IEnumerable<WorkOrder>>()
+                return new BaseResponse<IEnumerable<Order>>()
                 {
-                    Description = $"[GetByActivityCategoryId] : {ex.Message}",
+                    Description = $"[GetByJobCategoryId] : {ex.Message}",
                     StatusCode = RequestToDbErrorStatusCode.InternalServerError
                 };
             }
@@ -155,29 +155,29 @@ namespace Service.Implementations
         #endregion
 
         #region Получить коллекцию заказов из базы по отдельному заказчику
-        public async Task<IBaseResponse<IEnumerable<WorkOrder>>> GetByEmployerId(int employerId)
+        public async Task<IBaseResponse<IEnumerable<Order>>> GetByEmployerId(int employerId)
         {
-            var baseResponse = new BaseResponse<IEnumerable<WorkOrder>>();
+            var baseResponse = new BaseResponse<IEnumerable<Order>>();
 
             try
             {
-                var workOrders = await _workOrderRepository.GetByEmployerId(employerId);
+                var orders = await _orderRepository.GetByEmployerId(employerId);
 
-                if (workOrders == null)
+                if (orders == null)
                 {
                     baseResponse.Description = "Найдено 0 элементов";
-                    baseResponse.StatusCode = RequestToDbErrorStatusCode.WorkOrderNotFound;
+                    baseResponse.StatusCode = RequestToDbErrorStatusCode.OrderNotFound;
                     return baseResponse;
                 }
 
-                baseResponse.Data = workOrders;
+                baseResponse.Data = orders;
                 baseResponse.StatusCode = RequestToDbErrorStatusCode.Ok;
 
                 return baseResponse;
             }
             catch (Exception ex)
             {
-                return new BaseResponse<IEnumerable<WorkOrder>>()
+                return new BaseResponse<IEnumerable<Order>>()
                 {
                     Description = $"[GetByEmployerId] : {ex.Message}",
                     StatusCode = RequestToDbErrorStatusCode.InternalServerError
@@ -187,29 +187,29 @@ namespace Service.Implementations
         #endregion
 
         #region Получить заказ из базы по названию
-        public async Task<IBaseResponse<WorkOrder>> GetByTitle(string title)
+        public async Task<IBaseResponse<Order>> GetByTitle(string title)
         {
-            var baseResponse = new BaseResponse<WorkOrder>();
+            var baseResponse = new BaseResponse<Order>();
 
             try
             {
-                var workOrder = await _workOrderRepository.GetByTitle(title);
+                var order = await _orderRepository.GetByTitle(title);
 
-                if (workOrder == null)
+                if (order == null)
                 {
                     baseResponse.Description = "Найдено 0 элементов";
-                    baseResponse.StatusCode = RequestToDbErrorStatusCode.WorkOrderNotFound;
+                    baseResponse.StatusCode = RequestToDbErrorStatusCode.OrderNotFound;
                     return baseResponse;
                 }
 
-                baseResponse.Data = workOrder;
+                baseResponse.Data = order;
                 baseResponse.StatusCode = RequestToDbErrorStatusCode.Ok;
 
                 return baseResponse;
             }
             catch (Exception ex)
             {
-                return new BaseResponse<WorkOrder>()
+                return new BaseResponse<Order>()
                 {
                     Description = $"[GetByTitle] : {ex.Message}",
                     StatusCode = RequestToDbErrorStatusCode.InternalServerError
@@ -219,29 +219,29 @@ namespace Service.Implementations
         #endregion
 
         #region Получить коллекцию заказов из базы по отдельному исполнителю
-        public async Task<IBaseResponse<IEnumerable<WorkOrder>>> GetByWorkerId(int workerId)
+        public async Task<IBaseResponse<IEnumerable<Order>>> GetByWorkerId(int workerId)
         {
-            var baseResponse = new BaseResponse<IEnumerable<WorkOrder>>();
+            var baseResponse = new BaseResponse<IEnumerable<Order>>();
 
             try
             {
-                var workOrders = await _workOrderRepository.GetByWorkerId(workerId);
+                var orders = await _orderRepository.GetByWorkerId(workerId);
 
-                if (workOrders == null)
+                if (orders == null)
                 {
                     baseResponse.Description = "Найдено 0 элементов";
-                    baseResponse.StatusCode = RequestToDbErrorStatusCode.WorkOrderNotFound;
+                    baseResponse.StatusCode = RequestToDbErrorStatusCode.OrderNotFound;
                     return baseResponse;
                 }
 
-                baseResponse.Data = workOrders;
+                baseResponse.Data = orders;
                 baseResponse.StatusCode = RequestToDbErrorStatusCode.Ok;
 
                 return baseResponse;
             }
             catch (Exception ex)
             {
-                return new BaseResponse<IEnumerable<WorkOrder>>()
+                return new BaseResponse<IEnumerable<Order>>()
                 {
                     Description = $"[GetByWorkerId] : {ex.Message}",
                     StatusCode = RequestToDbErrorStatusCode.InternalServerError
@@ -251,29 +251,29 @@ namespace Service.Implementations
         #endregion
 
         #region Получить коллекцию заказов из базы по локации
-        public async Task<IBaseResponse<IEnumerable<WorkOrder>>> GetByLocationId(int locationId)
+        public async Task<IBaseResponse<IEnumerable<Order>>> GetByLocationId(int locationId)
         {
-            var baseResponse = new BaseResponse<IEnumerable<WorkOrder>>();
+            var baseResponse = new BaseResponse<IEnumerable<Order>>();
 
             try
             {
-                var workOrders = await _workOrderRepository.GetByLocationId(locationId);
+                var orders = await _orderRepository.GetByLocationId(locationId);
 
-                if (workOrders == null)
+                if (orders == null)
                 {
                     baseResponse.Description = "Найдено 0 элементов";
-                    baseResponse.StatusCode = RequestToDbErrorStatusCode.WorkOrderNotFound;
+                    baseResponse.StatusCode = RequestToDbErrorStatusCode.OrderNotFound;
                     return baseResponse;
                 }
 
-                baseResponse.Data = workOrders;
+                baseResponse.Data = orders;
                 baseResponse.StatusCode = RequestToDbErrorStatusCode.Ok;
 
                 return baseResponse;
             }
             catch (Exception ex)
             {
-                return new BaseResponse<IEnumerable<WorkOrder>>()
+                return new BaseResponse<IEnumerable<Order>>()
                 {
                     Description = $"[GetByLocationId] : {ex.Message}",
                     StatusCode = RequestToDbErrorStatusCode.InternalServerError
@@ -283,29 +283,29 @@ namespace Service.Implementations
         #endregion
 
         #region Получить коллекцию заказов из базы по статусу проверки модератором
-        public async Task<IBaseResponse<IEnumerable<WorkOrder>>> GetByModerationStatus(int moderationStatus)
+        public async Task<IBaseResponse<IEnumerable<Order>>> GetByModerationStatus(int moderationStatus)
         {
-            var baseResponse = new BaseResponse<IEnumerable<WorkOrder>>();
+            var baseResponse = new BaseResponse<IEnumerable<Order>>();
 
             try
             {
-                var workOrders = await _workOrderRepository.GetByModerationStatus(moderationStatus);
+                var orders = await _orderRepository.GetByModerationStatus(moderationStatus);
 
-                if (workOrders == null)
+                if (orders == null)
                 {
                     baseResponse.Description = "Найдено 0 элементов";
-                    baseResponse.StatusCode = RequestToDbErrorStatusCode.WorkOrderNotFound;
+                    baseResponse.StatusCode = RequestToDbErrorStatusCode.OrderNotFound;
                     return baseResponse;
                 }
 
-                baseResponse.Data = workOrders;
+                baseResponse.Data = orders;
                 baseResponse.StatusCode = RequestToDbErrorStatusCode.Ok;
 
                 return baseResponse;
             }
             catch (Exception ex)
             {
-                return new BaseResponse<IEnumerable<WorkOrder>>()
+                return new BaseResponse<IEnumerable<Order>>()
                 {
                     Description = $"[GetByModerationStatus] : {ex.Message}",
                     StatusCode = RequestToDbErrorStatusCode.InternalServerError
@@ -315,29 +315,29 @@ namespace Service.Implementations
         #endregion
 
         #region Получить коллекцию заказов из базы по статусу публикации и выполнения
-        public async Task<IBaseResponse<IEnumerable<WorkOrder>>> GetByRelevance(int relevance)
+        public async Task<IBaseResponse<IEnumerable<Order>>> GetByRelevance(int relevance)
         {
-            var baseResponse = new BaseResponse<IEnumerable<WorkOrder>>();
+            var baseResponse = new BaseResponse<IEnumerable<Order>>();
 
             try
             {
-                var workOrders = await _workOrderRepository.GetByRelevance(relevance);
+                var orders = await _orderRepository.GetByRelevance(relevance);
 
-                if (workOrders == null)
+                if (orders == null)
                 {
                     baseResponse.Description = "Найдено 0 элементов";
-                    baseResponse.StatusCode = RequestToDbErrorStatusCode.WorkOrderNotFound;
+                    baseResponse.StatusCode = RequestToDbErrorStatusCode.OrderNotFound;
                     return baseResponse;
                 }
 
-                baseResponse.Data = workOrders;
+                baseResponse.Data = orders;
                 baseResponse.StatusCode = RequestToDbErrorStatusCode.Ok;
 
                 return baseResponse;
             }
             catch (Exception ex)
             {
-                return new BaseResponse<IEnumerable<WorkOrder>>()
+                return new BaseResponse<IEnumerable<Order>>()
                 {
                     Description = $"[GetByRelevance] : {ex.Message}",
                     StatusCode = RequestToDbErrorStatusCode.InternalServerError
@@ -347,7 +347,7 @@ namespace Service.Implementations
         #endregion
 
         #region Обновить заказ в базе данных
-        public async Task<IBaseResponse<bool>> Update(int id, WorkOrder updatedWorkOrder)
+        public async Task<IBaseResponse<bool>> Update(int id, Order updatedOrder)
         {
             var baseResponse = new BaseResponse<bool>()
             {
@@ -356,18 +356,18 @@ namespace Service.Implementations
 
             try
             {
-                var workOrder = await _workOrderRepository.GetById(id);
+                var order = await _orderRepository.GetById(id);
 
-                if (workOrder == null)
+                if (order == null)
                 {
-                    baseResponse.Description = "WorkOrder not found";
-                    baseResponse.StatusCode = RequestToDbErrorStatusCode.WorkOrderNotFound;
+                    baseResponse.Description = "Order not found";
+                    baseResponse.StatusCode = RequestToDbErrorStatusCode.OrderNotFound;
                     baseResponse.Data = false;
 
                     return baseResponse;
                 }
 
-                await _workOrderRepository.Update(id, updatedWorkOrder);
+                await _orderRepository.Update(id, updatedOrder);
 
                 return baseResponse;
 
@@ -393,18 +393,18 @@ namespace Service.Implementations
 
             try
             {
-                var workOrder = await _workOrderRepository.GetById(id);
+                var order = await _orderRepository.GetById(id);
 
-                if (workOrder == null)
+                if (order == null)
                 {
-                    baseResponse.Description = "WorkOrder not found";
-                    baseResponse.StatusCode = RequestToDbErrorStatusCode.WorkOrderNotFound;
+                    baseResponse.Description = "Order not found";
+                    baseResponse.StatusCode = RequestToDbErrorStatusCode.OrderNotFound;
                     baseResponse.Data = false;
 
                     return baseResponse;
                 }
 
-                await _workOrderRepository.Delete(workOrder);
+                await _orderRepository.Delete(order);
 
                 return baseResponse;
 

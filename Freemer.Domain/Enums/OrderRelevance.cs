@@ -10,7 +10,7 @@ namespace Freemer.Domain.Enums
     /// <summary>
     /// Статусы публикации и выполнения
     /// </summary>
-    public enum WorkOrderRelevance
+    public enum OrderRelevance
     {
         [Display(Name = "Не опубликовано")]
         NotPublished = 0,

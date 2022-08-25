@@ -8,7 +8,7 @@ namespace Freemer.Domain.Enums
 {
     public enum RequestToDbErrorStatusCode
     {
-        WorkOrderNotFound = 0,
+        OrderNotFound = 0,
         CategoryNotFound = 2,
         Ok = 200,
         InternalServerError = 500

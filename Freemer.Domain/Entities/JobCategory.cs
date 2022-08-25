@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Freemer.Domain.Entities
 {
-    public class ActivityCategory
+    public class JobCategory
     {
         public int Id { get; set; }
         public string Name { get; set; }

@@ -35,9 +35,9 @@ namespace Freemer
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connection));
 
-            services.AddScoped<IWorkOrderRepository, WorkOrderRepository>();
-            services.AddScoped<IActivityCategoryRepository, ActivityCategoryRepository>();
-            services.AddScoped<IWorkOrderService, WorkOrderService>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<IJobCategoryRepository, JobCategoryRepository>();
+            services.AddScoped<IOrderService, OrderService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
