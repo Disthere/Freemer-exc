@@ -9,7 +9,7 @@ namespace Freemer.Domain.Entities
 {
     public class JobCategory
     {
-        public int Id { get; set; }
+        public int Id { get; set; } // Использовать тип Guid
         public string Name { get; set; }
 
         [DefaultValue(0)]

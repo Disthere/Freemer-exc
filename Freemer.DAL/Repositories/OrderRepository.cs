@@ -48,7 +48,7 @@ namespace Freemer.DAL.Repositories
             return await _dbContext.Order.FirstOrDefaultAsync(x => x.Title == title);
         }
 
-        // Async - для безостановочной работы сайта при обращении к базе данных
+        
         public async Task<List<Order>> Select()
         {
             return await _dbContext.Order.ToListAsync();

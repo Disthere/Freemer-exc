@@ -10,23 +10,41 @@ namespace Freemer.Domain.Entities
 {
     public class Order
     {
-        public int Id { get; set; }
+        public int Id { get; set; } // Использовать тип Guid
         public string Title { get; set; }
         public string Description { get; set; }
-        public DateTime CreationDate { get; set; } = DateTime.Now;
-        public int EmployerId { get; set; }
         public int JobCategoryId { get; set; }
-        public int LocationId { get; set; }
-        public string OrderType { get; set; }
-        public TimeSpan TimeOver { get; set; }
-        public decimal StartPrice { get; set; }
-        public decimal FinalPrice { get; set; }
-        public int WorkerId { get; set; }
+        public string OrderType { get; set; } // Отдельная таблица с типами заказов
         public string OtherInfo { get; set; }
 
-        [DefaultValue(OrderModerationStatus.NotModerated)] //(отдельная таблица с причинами отказа в публикации)
+
+        // Вынести в отдельную таблицу с заказчиками
+        public int EmployerId { get; set; }
+
+        // Вынести в отдельную таблицу с временными метками заказа
+        public DateTime CreationDate { get; set; } = DateTime.Now;
+        public TimeSpan TimeOver { get; set; }
+
+
+        // Вынести в отдельную таблицу
+        public int LocationId { get; set; }
+
+
+        // Вынести в отдельную таблицу с ценовыми характеристиками заказа
+        public decimal StartPrice { get; set; }
+        public decimal FinalPrice { get; set; }
+
+
+        // Вынести в отдельную таблицу с исполнителями
+        public int WorkerId { get; set; }
+
+
+        //(отдельная таблица с причинами отказа в публикации, датой модерации и отправки результата модерации заказчику)
+        [DefaultValue(OrderModerationStatus.NotModerated)]
         public OrderModerationStatus ModerationStatus { get; set; }
 
+
+        //(отдельная таблица с датами публикации, снятия с публикации)
         [DefaultValue(OrderRelevance.NotPublished)]
         public OrderRelevance Relevance { get; set; }
 
