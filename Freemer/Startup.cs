@@ -32,6 +32,7 @@ namespace Freemer
             services.AddControllersWithViews();
 
             var connection = Configuration.GetConnectionString("DefaultConnection");
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connection));
 

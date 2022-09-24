@@ -14,7 +14,7 @@ namespace Freemer.DAL
             : base(options)
         {
             //Database.EnsureDeleted();
-            Database.EnsureCreated();
+            //Database.EnsureCreated();
         }
 
         public ApplicationDbContext()
