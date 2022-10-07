@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Freemer.DAL\Freemer.DAL.csproj" />
-    <ProjectReference Include="..\Freemer.Domain\Freemer.Domain.csproj" />
+    <ProjectReference Include="..\Freemer.DAL\Freemer.DAL Example.csproj" />
+    <ProjectReference Include="..\Freemer.Domain\Freemer.Domain Example.csproj" />
   </ItemGroup>
 
 </Project>

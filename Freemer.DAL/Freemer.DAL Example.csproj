@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Freemer.Domain\Freemer.Domain.csproj" />
+    <ProjectReference Include="..\Freemer.Domain\Freemer.Domain Example.csproj" />
   </ItemGroup>
 
 </Project>
